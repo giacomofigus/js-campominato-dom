@@ -12,7 +12,6 @@ btnHtml.addEventListener('click', function(){
 
     grigliaHtml.innerHTML = ''
 
-    console.log(selectHtml.value);
 
     // Riempio l'array con numeri casuali
     for(let i = 0; arrayNumb.length < 16; i++) {
@@ -34,17 +33,26 @@ btnHtml.addEventListener('click', function(){
             if (giocoInCorso){
                 let spanHtml = parseInt(this.querySelector("span").innerText);
 
+                console.log(parseInt(selectHtml.value));
+
                 if (arrayNumb.includes(spanHtml)) {
                     this.classList.add("rosso");
                     giocoInCorso = false;
                     alert("Hai perso")
                 } else{
                     this.classList.add("blue")
+
+                    const celleBlu = document.querySelectorAll('.box-easy.blue')
+
+                    console.log(celleBlu.length);
+
+                    if(celleBlu.length == selectHtml.value - arrayNumb.length){
+                        giocoInCorso = false;
+                        alert("Hai vinto")
+                    }
                 }
-    
-                console.log(arrayNumb);
                 console.log(`Hai cliccato il numero: ${spanHtml}`);
-            }
+            } 
 
         })
 
