@@ -6,14 +6,21 @@ const selectHtml = document.getElementById("menu");
 let arrayNumb = [];
 
 
-
-
-
-
 btnHtml.addEventListener('click', function(){
     grigliaHtml.style.setProperty("display", "flex")
 
     grigliaHtml.innerHTML = ''
+
+    console.log(selectHtml.value);
+
+    // Riempio l'array con numeri casuali
+    for(let i = 0; arrayNumb.length < 16; i++) {
+        let randomNumb = Math.floor(Math.random() * selectHtml.value) + 1;
+        
+        if(arrayNumb.indexOf(randomNumb) === -1) {
+            arrayNumb.push(randomNumb)
+        }                
+    }
 
     // creo i box
     for(let i = 1; i <= selectHtml.value; i++) {
@@ -39,13 +46,9 @@ btnHtml.addEventListener('click', function(){
     }
 })
 
-// Riempio l'array con numeri casuali
-for(let i = 0; arrayNumb.length < 16; i++) {
-    let randomNumb = Math.floor(Math.random() * selectHtml.value) + 1;
-    if(arrayNumb.indexOf(randomNumb) === -1) {
-        arrayNumb.push(randomNumb)
-    }                
-}
+
+
+
 
 
 
