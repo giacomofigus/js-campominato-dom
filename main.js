@@ -4,6 +4,7 @@ let grigliaHtml = document.getElementById("grid");
 const selectHtml = document.getElementById("menu");
 
 let arrayNumb = [];
+let giocoInCorso = true
 
 
 btnHtml.addEventListener('click', function(){
@@ -16,7 +17,7 @@ btnHtml.addEventListener('click', function(){
     // Riempio l'array con numeri casuali
     for(let i = 0; arrayNumb.length < 16; i++) {
         let randomNumb = Math.floor(Math.random() * selectHtml.value) + 1;
-        
+
         if(arrayNumb.indexOf(randomNumb) === -1) {
             arrayNumb.push(randomNumb)
         }                
@@ -30,17 +31,24 @@ btnHtml.addEventListener('click', function(){
         box.classList.add("box-easy")
 
         box.addEventListener('click', function(){
-            let spanHtml = parseInt(this.querySelector("span").innerText);
+            if (giocoInCorso){
+                let spanHtml = parseInt(this.querySelector("span").innerText);
 
-            if (arrayNumb.includes(spanHtml)) {
-                this.classList.add("rosso");
-            } else{
-                this.classList.add("blue")
+                if (arrayNumb.includes(spanHtml)) {
+                    this.classList.add("rosso");
+                    giocoInCorso = false;
+                    alert("Hai perso")
+                } else{
+                    this.classList.add("blue")
+                }
+    
+                console.log(arrayNumb);
+                console.log(`Hai cliccato il numero: ${spanHtml}`);
             }
 
-            console.log(arrayNumb);
-            console.log(`Hai cliccato il numero: ${spanHtml}`);
         })
+
+        
 
         grigliaHtml.appendChild(box);
     }
