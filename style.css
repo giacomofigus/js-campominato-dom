@@ -54,3 +54,12 @@ header{
 .blue span{
     display: block;
 }
+
+.rosso{
+    background-color: rgb(202, 36, 36);
+}
+
+.rosso span{
+    display: block;
+}
+
