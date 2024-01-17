@@ -3,6 +3,17 @@ let btnHtml = document.getElementById("button");
 let grigliaHtml = document.getElementById("grid");
 const selectHtml = document.getElementById("menu");
 
+let arrayNumb = [];
+
+for(let i = 0; arrayNumb.length < 16; i++){
+    let randomNumb = Math.floor(Math.random() * selectHtml.value) + 1;
+    if(arrayNumb.indexOf(randomNumb) === -1){
+        arrayNumb.push(randomNumb)
+    }                
+}
+
+
+
 
 
 btnHtml.addEventListener('click', function(){
@@ -32,20 +43,10 @@ btnHtml.addEventListener('click', function(){
         // do la funzione al click
         box.addEventListener('click', function(){
 
-            // generazione numeri random e unici
-            let arrayNumb = [];
-
-            for(let i = 0; arrayNumb.length < 16; i++){
-                let randomNumb = Math.floor(Math.random() * selectHtml.value) + 1;
-                if(arrayNumb.indexOf(randomNumb) === -1){
-                    arrayNumb.push(randomNumb)
-                }                
-            }
-
             //seleziono la box cliccata
             let spanHtml = this.querySelector("span").innerText
 
-            if(arrayNumb.includes(i)){
+            if(spanHtml === arrayNumb){
                 box.classList.add("rosso")
             } else  {
                 box.classList.add("blue")
