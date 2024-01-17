@@ -5,12 +5,6 @@ const selectHtml = document.getElementById("menu");
 
 let arrayNumb = [];
 
-for(let i = 0; arrayNumb.length < 16; i++){
-    let randomNumb = Math.floor(Math.random() * selectHtml.value) + 1;
-    if(arrayNumb.indexOf(randomNumb) === -1){
-        arrayNumb.push(randomNumb)
-    }                
-}
 
 
 
@@ -21,47 +15,37 @@ btnHtml.addEventListener('click', function(){
 
     grigliaHtml.innerHTML = ''
 
-    // creo 100 box
-    for(i = 1; i <= selectHtml.value; i++){
-        // creo box generale
+    // creo i box
+    for(let i = 1; i <= selectHtml.value; i++) {
         let box = document.createElement("div")
-
-        // al click cambia la difficoltà modificando le box
-        box.style.setProperty(
-            "flex-basis", `calc(100% / ${Math.sqrt(selectHtml.value)}`
-        )
-
-        // gli inserisco il numero all'interno
+        box.style.setProperty("flex-basis", `calc(100% / ${Math.sqrt(selectHtml.value)})`)
         box.innerHTML = `<span>${i}</span>`
-
-        //renderlo display none così che il numero si veda solo al click
-        
-        // gli do la calsse
         box.classList.add("box-easy")
 
-        
-        // do la funzione al click
         box.addEventListener('click', function(){
+            let spanHtml = parseInt(this.querySelector("span").innerText);
 
-            //seleziono la box cliccata
-            let spanHtml = this.querySelector("span").innerText
-
-            if(spanHtml === arrayNumb){
-                box.classList.add("rosso")
-            } else  {
-                box.classList.add("blue")
+            if (arrayNumb.includes(spanHtml)) {
+                this.classList.add("rosso");
+            } else{
+                this.classList.add("blue")
             }
-            
-            console.log(arrayNumb);
 
-            // mostro nel log il numero selezionato 
+            console.log(arrayNumb);
             console.log(`Hai cliccato il numero: ${spanHtml}`);
         })
 
-        // inserisco all'interno della griglia 
-        grid.appendChild(box)
+        grigliaHtml.appendChild(box);
     }
 })
+
+// Riempio l'array con numeri casuali
+for(let i = 0; arrayNumb.length < 16; i++) {
+    let randomNumb = Math.floor(Math.random() * selectHtml.value) + 1;
+    if(arrayNumb.indexOf(randomNumb) === -1) {
+        arrayNumb.push(randomNumb)
+    }                
+}
 
 
 
